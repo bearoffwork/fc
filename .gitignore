@@ -21,3 +21,7 @@ yarn-error.log
 /.vscode
 /.zed
 icons8-move-stock-color-glass.zip
+
+.bin
+.envrc
+.direnv

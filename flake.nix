@@ -27,17 +27,19 @@
               openssl
               pdo
               pdo_mysql
+              pdo_sqlite
               session
-              simplexml
-              sodium
+              # sodium
               tokenizer
               xdebug
+              simplexml
               xmlreader
               xmlwriter
               zip
               zlib
             ];
           extraConfig = ''
+            xdebug.mode = off
             xdebug.start_with_request = yes
             xdebug.discover_client_host = true
           '';
@@ -48,7 +50,7 @@
             bashInteractive
             php
             php.packages.composer
-            pkgs.nodePackages.nodejs
+            pkgs.nodejs
           ];
 
           # Post-activation hook to symlink PHP to ./.bin directory
@@ -56,6 +58,8 @@
             mkdir -p .bin
             ln -sf ${php}/bin/php .bin/php
             ln -sf ${php.packages.composer}/bin/composer .bin/composer
+            ln -sf ${pkgs.nodejs}/bin/node .bin/node
+            ln -sf ${pkgs.nodejs}/bin/npm .bin/npm
           '';
         };
 
