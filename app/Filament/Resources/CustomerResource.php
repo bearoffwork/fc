@@ -11,13 +11,13 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use function Laravel\Prompts\text;
 
 class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
     protected static ?string $navigationLabel = '客戶管理';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -27,11 +27,14 @@ class CustomerResource extends Resource
                 //
                 Section::make('add customer')
                     ->schema([
-                        TextInput::make('company_name'),
-                        TextInput::make('company_phone'),
-                        TextInput::make('company_address'),
+                        TextInput::make('company_name')
+                            ->required(),
+                        TextInput::make('company_phone')
+                            ->required(),
+                        TextInput::make('company_address')
+                            ->required(),
                     ])
-                    ->columns(3)
+                    ->columns(3),
             ]);
     }
 
@@ -73,6 +76,7 @@ class CustomerResource extends Resource
             'index' => Pages\ListCustomers::route('/'),
             'create' => Pages\CreateCustomer::route('/create'),
             'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            'mgr' => Pages\ManageCustomer::route('/mgr'),
         ];
     }
 }

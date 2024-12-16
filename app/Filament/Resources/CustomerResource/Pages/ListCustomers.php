@@ -14,6 +14,8 @@ class ListCustomers extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            Actions\Action::make('Manage')
+                ->url(ManageCustomer::getUrl()),
         ];
     }
 }
